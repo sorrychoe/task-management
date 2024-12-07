@@ -3,19 +3,35 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import React from 'react';
 
+type FormData = {
+  title: string;
+  time: string;
+  description?: string;
+};
+
 export function NewTask(): JSX.Element {
-  const navigate = useNavigate()  
-  const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
+  const { register, handleSubmit } = useForm<FormData>();
 
-  const onSubmit = (data: any): void => {
-    navigate('/')
-  }
+  const onSubmit = (data: FormData): void => {
+    const newTask = {
+      id: Date.now(),
+      title: data.title,
+      time: data.time,
+      description: data.description || ""
+    };
 
+    const savedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+    savedTasks.push(newTask);
+    localStorage.setItem('tasks', JSON.stringify(savedTasks));
+
+    navigate('/');
+  };
 
   return (
     <Container>
       <Header>
-        <Link to="/"><img src="/assets/close.png" /></Link>
+        <Link to="/"><img src="/assets/close.png" alt="Close" /></Link>
         <h1>Create New Task</h1>
       </Header>
       <Body>
@@ -32,14 +48,12 @@ export function NewTask(): JSX.Element {
             <label>Description</label>
             <textarea {...register("description")} />
           </Input>
-          <SubmitButton>Create</SubmitButton>
+          <SubmitButton type="submit">Create</SubmitButton>
         </form>
       </Body>
     </Container>
   );
 }
-  
-
 
 
 const Container = styled.div`
@@ -48,7 +62,6 @@ const Container = styled.div`
   height: 100vh;
   background: #ffffff;
 `
-
 
 const Header = styled.header`
   position: relative;
@@ -71,14 +84,12 @@ const Header = styled.header`
   }
 `
 
-
 const Body = styled.div`
   flex: 1;
   padding: 24px;
   border-radius: 20px;
   background: #202635;
 `
-
 
 const Input = styled.div`
   display: flex;

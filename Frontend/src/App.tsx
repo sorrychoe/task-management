@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { NewTask } from "./pages/NewTask";
-import React from "react";
+import React from 'react';
 
 const router = createBrowserRouter([
   {
