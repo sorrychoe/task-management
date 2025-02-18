@@ -1,0 +1,16 @@
+{
+  "name": "task-management-app",
+  "version": "1.0.0",
+  "description": "- for learning about Typescript & Nest.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/cli": "^6.2.0",
+    "@capacitor/core": "^6.2.0"
+  }
+}

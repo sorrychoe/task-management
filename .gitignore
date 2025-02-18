@@ -1,1 +1,8 @@
+# ignore data
 .DS_Store
+node_modules/
+app-build/
+
+# android data
+android/
+capacitor.config.json

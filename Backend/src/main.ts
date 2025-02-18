@@ -8,11 +8,11 @@ async function bootstrap() {
 
   app.enableCors();
 
-  app.useStaticAssets(path.join(__dirname, '..', 'public'));
+  app.useStaticAssets(path.join(__dirname, '..'));
 
   const expressApp = app.getHttpAdapter().getInstance();
   expressApp.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public/', 'index.html'));
+    res.sendFile(path.join(__dirname, '..','index.html'));
   });
 
   const PORT = process.env.PORT || 4000;
